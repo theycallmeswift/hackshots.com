@@ -1,6 +1,9 @@
 var express = require('express')
   , http = require('http')
+  , querystring = require('querystring')
+  , util = require('util')
   , app = express()
+  , request = require('request')
   , port = process.env.PORT || 3000
   , env = process.env.NODE_ENV || 'development';
 
@@ -21,7 +24,10 @@ function forcewww(req, res, next) {
 }
 
 app.get('/api/v1/i', [forcewww], function(req, res) {
-  res.send('hello world');
+  var qs = querystring.stringify(req.query)
+    , api_url = "http://pinkyurl.com/i?" + qs;
+  util.log("Requesting: " + api_url);
+  request.get(api_url).pipe(res);
 });
 
 http.createServer(app).listen(port);
