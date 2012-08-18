@@ -1,0 +1,14 @@
+{
+  "name": "hackshots.com",
+  "version": "0.0.0",
+  "description": "SSL Wrapper for tinyurl",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Swift <theycallmeswift@gmail.com>",
+  "license": "BSD",
+  "dependencies": {
+    "express": "~3.0.0rc3"
+  }
+}
