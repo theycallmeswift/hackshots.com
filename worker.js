@@ -21,7 +21,7 @@ function forcewww(req, res, next) {
     if (req.headers.host.match(/^www/) !== null ) {
       next();
     } else {
-      res.redirect('https://www.' + req.headers.host + req.url);
+      res.redirect('http://www.' + req.headers.host + req.url);
     }
   } else {
     next();
