@@ -21,7 +21,7 @@ function force_www_and_ssl(req, res, next) {
     if (req.headers.host.match(/^www/) !== null && req.protocol === 'https') {
       next();
     } else {
-      url = 'https://www.hackshots.com/' + req.headers.host + req.url;
+      url = 'https://www.hackshots.com/' + req.url;
       util.log(url);
       res.redirect(url);
     }
