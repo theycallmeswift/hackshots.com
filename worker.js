@@ -21,7 +21,11 @@ function force_www_and_ssl(req, res, next) {
     if (req.headers.host.match(/^www/) !== null && req.protocol === 'https') {
       next();
     } else {
-      res.redirect('https://www.' + req.headers.host + req.url);
+      if (req.headers.host.match(/^www/) === null) {
+        res.redirect('https://www.' + req.headers.host + req.url);
+      } else {
+        res.redirect('https://' + req.headers.host + req.url);
+      }
     }
   } else {
     next();
