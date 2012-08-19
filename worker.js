@@ -19,6 +19,7 @@ app.configure(function() {
 function force_www_and_ssl(req, res, next) {
   if(env === 'production') {
     util.log(req.protocol);
+    util.log("Secure: " + req.secure);
     if (req.headers.host.match(/^www/) !== null) {
       next();
     } else {
