@@ -18,11 +18,12 @@ app.configure(function() {
 
 function force_www_and_ssl(req, res, next) {
   if(env === 'production') {
-    if (req.headers.host.match(/^www/) !== null && req.protocol === 'https') {
+    util.log(req.protocol);
+    if (req.headers.host.match(/^www/) !== null) {
       next();
     } else {
       url = 'https://www.hackshots.com' + req.url;
-      util.log(url);
+      util.log("Redirecting to " + url);
       res.redirect(url);
     }
   } else {
