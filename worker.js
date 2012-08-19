@@ -16,19 +16,19 @@ app.configure(function() {
   app.use(express.static(__dirname + '/public'));
 });
 
-function forcewww(req, res, next) {
+function force_www_and_ssl(req, res, next) {
   if(env === 'production') {
-    if (req.headers.host.match(/^www/) !== null ) {
+    if (req.headers.host.match(/^www/) !== null && req.protocol === 'https') {
       next();
     } else {
-      res.redirect('http://www.' + req.headers.host + req.url);
+      res.redirect('https://www.' + req.headers.host + req.url);
     }
   } else {
     next();
   }
 }
 
-app.get('/api/v1/i', [forcewww], function(req, res) {
+app.get('/api/v1/i', [force_www_and_ssl], function(req, res) {
   var qs = querystring.stringify(req.query)
     , api_url = "http://pinkyurl.com/i?" + qs;
   util.log('Worker #' + cluster.worker.uniqueID + ' Requesting: ' + api_url);
