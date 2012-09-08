@@ -1,10 +1,10 @@
 {
   "name": "hackshots.com",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "SSL Wrapper for tinyurl",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/cucumber.js features/"
   },
   "author": "Swift <theycallmeswift@gmail.com>",
   "license": "Beerware",
@@ -12,6 +12,10 @@
     "express": "3.0.0rc3",
     "request": "~2.10.0",
     "cluster-master": "0.0.9"
+  },
+  "devDependencies": {
+    "nock": "~0.13.3",
+    "cucumber": "~0.2.20"
   },
   "engines": {
     "node": "0.8.x",

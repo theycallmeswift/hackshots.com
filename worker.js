@@ -8,8 +8,10 @@ var cluster = require('cluster')
   , port = process.env.PORT || 3000
   , env = process.env.NODE_ENV || 'development';
 
-if (cluster.isMaster) {
+if (env === 'production' && cluster.isMaster) {
   throw new Error("should only be invoked as cluster worker")
+} else if(!cluster.worker || !cluster.worker.uniqueID) {
+  cluster.worker = { uniqueID: 1 };
 }
 
 app.configure(function() {
